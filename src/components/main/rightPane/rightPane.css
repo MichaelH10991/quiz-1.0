@@ -1,0 +1,67 @@
+.right-pane {
+  width: 300px;
+  border: 1px solid #ff9494;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  height: calc(100vh - 72px);
+}
+
+.options-button {
+  visibility: hidden;
+  width: 50px;
+  height: 50px;
+  margin: 10px 10px 0px 0px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  background-color: #ff9494;
+
+  position: absolute;
+  top: 70px;
+  right: 0;
+  padding: 0;
+
+  /* transition: opacity 0.01s; */
+}
+
+.options-button:active {
+  opacity: 0.5;
+}
+
+.options-icon {
+  padding-top: 2px;
+  height: 40px;
+}
+
+.right-pane-content {
+  padding: 15px;
+}
+
+.right-pane-header {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.right-pane-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.right-pane-option-text {
+}
+
+.right-pane-checkbox {
+}
+
+@media (max-width: 768px) {
+  .right-pane {
+    display: none;
+  }
+
+  .options-button {
+    visibility: visible;
+  }
+}

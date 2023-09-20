@@ -1,0 +1,36 @@
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ff9494;
+  padding: 0px 20px 0px 20px;
+}
+
+.header-left {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.header-right {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-gamemodes-containers {
+  height: 100%;
+  cursor: pointer;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+}
+
+.header-gamemodes-containers:hover {
+  text-decoration: underline;
+}
+
+.header-gamemodes-containers-link {
+}
