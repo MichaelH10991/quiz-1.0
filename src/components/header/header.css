@@ -11,6 +11,7 @@
   display: flex;
   flex: 1;
   justify-content: flex-start;
+  gap: 30px;
 }
 
 .header-right {
@@ -18,7 +19,7 @@
   flex: 1;
   justify-content: flex-end;
   align-items: center;
-  gap: 10px;
+  gap: 30px;
 }
 
 .header-gamemodes-containers {
@@ -33,4 +34,47 @@
 }
 
 .header-gamemodes-containers-link {
+}
+
+.options-button {
+  width: 50px;
+  height: 50px;
+  /* margin: 10px 10px 0px 0px; */
+  padding: 0;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  background-color: #ffffff;
+
+  /* position: absolute;
+  top: 70px;
+  right: 0;
+  padding: 0; */
+
+  /* transition: opacity 0.01s; */
+}
+
+.options-button:active {
+  opacity: 0.5;
+}
+
+.options-icon {
+  /* padding-top: 2px; */
+  /* height: 40px; */
+}
+
+.games-button {
+  visibility: hidden;
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .games-button {
+    visibility: visible;
+    display: unset;
+  }
+
+  .header-gamemodes-containers {
+    visibility: hidden;
+    display: none;
+  }
 }
