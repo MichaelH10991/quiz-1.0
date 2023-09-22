@@ -3,7 +3,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #ff9494;
+  border-bottom: 9px solid #2bff93;
+  background-color: #272c44;
   padding: 0px 20px 0px 20px;
 }
 
@@ -11,7 +12,8 @@
   display: flex;
   flex: 1;
   justify-content: flex-start;
-  gap: 30px;
+  align-items: center;
+  gap: 15px;
 }
 
 .header-right {
@@ -19,31 +21,54 @@
   flex: 1;
   justify-content: flex-end;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
+}
+
+.options-button,
+.profile-button,
+.logo,
+.games-button {
+  height: 50px;
+}
+
+.logo {
+  font-size: 20px;
+  width: 50px;
+  background-color: rgb(39 44 68);
+  color: white;
+  font-weight: 600;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 28px;
+
+  margin-right: 10px;
 }
 
 .header-gamemodes-containers {
   height: 100%;
   cursor: pointer;
+  font-size: 20px;
   /* display: flex; */
   /* justify-content: flex-end; */
 }
 
 .header-gamemodes-containers:hover {
-  text-decoration: underline;
+  border-bottom: 4px solid #2bff93;
+  /* text-decoration: underline; */
 }
 
 .header-gamemodes-containers-link {
 }
 
-.options-button {
+.options-button,
+.profile-button {
   width: 50px;
   height: 50px;
   /* margin: 10px 10px 0px 0px; */
   padding: 0;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  background-color: #ffffff;
+  border: 1px solid #454d7a;
+  border-radius: 25px;
+  /* background-color: #ff2424; */
+  background-color: #454d7a;
 
   /* position: absolute;
   top: 70px;
@@ -53,18 +78,54 @@
   /* transition: opacity 0.01s; */
 }
 
+.profile-icon {
+  padding-top: 2px;
+  height: 40px;
+}
+
+.options-button {
+  visibility: hidden;
+  display: none;
+}
+
 .options-button:active {
   opacity: 0.5;
 }
 
-.options-icon {
-  /* padding-top: 2px; */
-  /* height: 40px; */
+.profile-button:active {
+  opacity: 0.5;
 }
 
 .games-button {
   visibility: hidden;
   display: none;
+
+  width: 60px;
+  background-color: white;
+  border: 1px solid lightgrey;
+
+  background-color: #272c44;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.options-dialog {
+  position: absolute;
+  top: 65px;
+  width: 300px;
+  height: 200px;
+  background: black;
+  border-radius: 10px;
+  border: 3px solid grey;
+  box-shadow: 0px 0px 10px black;
+}
+
+@media (max-width: 768px) {
+  .options-button {
+    visibility: visible;
+    display: unset;
+  }
 }
 
 @media (max-width: 560px) {

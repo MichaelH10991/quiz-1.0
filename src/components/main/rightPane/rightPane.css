@@ -1,6 +1,7 @@
 .right-pane {
   width: 300px;
-  border: 1px solid #ff9494;
+  border-top: 2px solid #2bff93;
+  background-color: #272c44;
   position: absolute;
   top: 70px;
   right: 0;
@@ -12,25 +13,6 @@
   visibility: hidden;
 }
 
-/* .options-button {
-  width: 50px;
-  height: 50px;
-  margin: 10px 10px 0px 0px;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  background-color: #ffffff;
-
-  position: absolute;
-  top: 70px;
-  right: 0;
-  padding: 0;
-
-}
-
-.options-button:active {
-  opacity: 0.5;
-} */
-
 .options-icon {
   padding-top: 2px;
   height: 40px;
@@ -41,12 +23,13 @@
 }
 
 .right-pane-header {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 700;
   margin-top: 10px;
 }
 
 .right-pane-option {
+  font-size: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,9 +37,6 @@
 }
 
 .right-pane-option-text {
-}
-
-.right-pane-checkbox {
 }
 
 @media (max-width: 768px) {

@@ -1,5 +1,24 @@
 const generalData = {
-  appName: "Lazuage",
+  appName: "L",
+  options: {
+    challenge: {
+      name: "Challenge mode",
+      enabled: false,
+    },
+    revise: {
+      name: "Revise",
+      enabled: false,
+    },
+    management: {
+      name: "Show management table",
+      enabled: false,
+    },
+    flip: {
+      name: "Flip questions",
+      enabled: false,
+    },
+  },
+  data: [],
 };
 
 export default generalData;
