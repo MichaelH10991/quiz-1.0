@@ -1,10 +1,7 @@
 import { useState } from "react";
+import { getLanguages, getCategories } from "../utils/utils";
 
 import "./subheader.css";
-
-const getLanguages = (data) => (data && Object.keys(data)) || [];
-const getCategories = (data, language) =>
-  (data && language && data[language] && Object.keys(data[language])) || [];
 
 const SubHeader = ({ setSelectedLanguage, setSelectedCategory, data }) => {
   const [language, setLanguage] = useState(undefined);
@@ -13,11 +10,13 @@ const SubHeader = ({ setSelectedLanguage, setSelectedCategory, data }) => {
   const categories = (language) => getCategories(data, language);
 
   const handleLanguageChange = (event) => {
+    console.log("language set ", event.target.value);
     setLanguage(event.target.value);
     setSelectedLanguage(event.target.value);
   };
 
   const handleCategoryChange = (event) => {
+    console.log("category set ", event.target.value);
     setSelectedCategory(event.target.value);
   };
 

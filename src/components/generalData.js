@@ -17,6 +17,10 @@ const generalData = {
       name: "Flip questions",
       enabled: false,
     },
+    peek: {
+      name: "Peek",
+      enabled: false,
+    },
   },
   data: [],
 };

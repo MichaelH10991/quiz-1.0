@@ -1,31 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/header/Header";
 import SubHeader from "./components/subHeader/SubHeader";
 import MainContent from "./components/main/Main";
+import Feedback from "./components/feedback/Feedback";
+
 import generalData from "./components/generalData";
 
-const data = {
-  Croatian: {
-    Numbers: [
-      {
-        _id: "64fb63de00168104841782b8",
-        id: "3f2e80cc-e98c-5c2f-bd17-aca5194207c8",
-        language: "Croatian",
-        group: "Numbers",
-        local: "One",
-        foreign: "Jedan",
-        foreignDisplay: "",
-        __v: 0,
-      },
-    ],
-  },
-};
+import fetchQuestions from "./components/api/fetchQuestions";
 
 function App() {
   const [options, setOptions] = useState(generalData.options);
+  const [data, setData] = useState(undefined);
   const [selectedLanguage, setSelectedLanguage] = useState(undefined);
   const [selectedCategory, setSelectedCategory] = useState(undefined);
+
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [answerCorrect, setAnswerCorrect] = useState(false);
+  const [prevQuestion, setPrevQuestion] = useState({});
+
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await fetchQuestions();
+      console.log(response);
+      setData(response.data);
+    };
+    fetch();
+  }, []);
 
   return (
     <div className="App">
@@ -35,7 +36,18 @@ function App() {
         setSelectedCategory={setSelectedCategory}
         data={data}
       />
-      <MainContent options={options} setOptions={setOptions} />
+      <MainContent
+        options={options}
+        setOptions={setOptions}
+        selectedLanguage={selectedLanguage}
+        selectedCategory={selectedCategory}
+        data={data}
+      />
+      <Feedback
+        showFeedback={showFeedback}
+        answerCorrect={answerCorrect}
+        prevQuestion={prevQuestion}
+      />
     </div>
   );
 }
