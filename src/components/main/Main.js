@@ -69,8 +69,6 @@ const getNewQuestion = (
   return question;
 };
 
-const Feedback = ({}) => {};
-
 const Main = ({
   options,
   setOptions,
@@ -91,7 +89,7 @@ const Main = ({
     setQuestions(questions);
     setQuestion(question);
     setPrevQuestion(question);
-  }, [data, selectedLanguage, selectedCategory]);
+  }, [data, selectedLanguage, selectedCategory, setPrevQuestion]);
 
   const handleInputChange = (event) => {
     setAnswer(event.target.value);
@@ -120,6 +118,17 @@ const Main = ({
     }
   };
 
+  const handleOptionSelected = (optionKey) => () =>
+    setOptions((prevOptions) => {
+      return {
+        ...prevOptions,
+        [optionKey]: {
+          ...prevOptions[optionKey],
+          enabled: !prevOptions[optionKey].enabled,
+        },
+      };
+    });
+
   return (
     <div class="main-grid">
       <div class="main-content">
@@ -146,7 +155,15 @@ const Main = ({
             <button class="answer-button">GO</button>
           </div>
           <div class="help-buttons">
-            <button class="help-button">Peek</button>
+            <button
+              class="help-button"
+              onMouseDown={handleOptionSelected("peek")}
+              onMouseUp={handleOptionSelected("peek")}
+              onTouchStart={handleOptionSelected("peek")}
+              onTouchEnd={handleOptionSelected("peek")}
+            >
+              Peek
+            </button>
             <button class="help-button">Skip</button>
           </div>
         </div>
