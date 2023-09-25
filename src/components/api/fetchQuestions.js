@@ -19,7 +19,8 @@ const data = {
 };
 
 const fetchQuestions = async () => {
-  return await axios("http://localhost:8080/read");
+  // return await axios("http://localhost:8080/read");
+  return await { data };
 };
 
 export default fetchQuestions;

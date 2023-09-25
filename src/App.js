@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/header/Header";
 import SubHeader from "./components/subHeader/SubHeader";
 import MainContent from "./components/main/Main";
-import Feedback from "./components/feedback/Feedback";
+import { Feedback } from "./components/common/";
 
 import generalData from "./components/generalData";
 
@@ -42,8 +42,12 @@ function App() {
         selectedLanguage={selectedLanguage}
         selectedCategory={selectedCategory}
         data={data}
+        setShowFeedback={setShowFeedback}
+        setAnswerCorrect={setAnswerCorrect}
+        setPrevQuestion={setPrevQuestion}
       />
       <Feedback
+        setShowFeedback={setShowFeedback}
         showFeedback={showFeedback}
         answerCorrect={answerCorrect}
         prevQuestion={prevQuestion}

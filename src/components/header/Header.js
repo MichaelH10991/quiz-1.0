@@ -4,7 +4,7 @@ import data from "./data";
 import optionsIconBlack from "./icons/settings_black_24dp.svg";
 import account from "./icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg";
 
-import Options from "../common/Options";
+import { Options } from "../common/";
 
 import { useState } from "react";
 

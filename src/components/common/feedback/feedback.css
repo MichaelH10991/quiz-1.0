@@ -1,0 +1,22 @@
+.feedback-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50px;
+}
+
+.feedback-correct {
+  background-color: green;
+
+}
+.feedback-incorrect {
+  background-color: red;
+
+}
+
+.exit-button {
+  
+}

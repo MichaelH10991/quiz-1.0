@@ -77,6 +77,9 @@ const Main = ({
   selectedLanguage,
   selectedCategory,
   data,
+  setShowFeedback,
+  setAnswerCorrect,
+  setPrevQuestion,
 }) => {
   const [answer, setAnswer] = useState("");
   const [questions, setQuestions] = useState({});
@@ -97,6 +100,8 @@ const Main = ({
     if (event.key === "Enter") {
       // check if the answer is correct
       const answerCorrect = isAnswerCorrect(answer, question, options);
+      setAnswerCorrect(answerCorrect);
+      setShowFeedback(true);
       // mark the questions, only in challenge mode, this is for user feedback
       if (options.challenge.enabled) {
         setQuestions((prevQuestions) =>
@@ -138,6 +143,10 @@ const Main = ({
               onKeyDown={handleSubmit}
             ></input>
             <button class="answer-button">GO</button>
+          </div>
+          <div class="help-buttons">
+            <button class="help-button">Peek</button>
+            <button class="help-button">Skip</button>
           </div>
         </div>
       </div>

@@ -48,7 +48,8 @@
   flex: 1;
 }
 
-.answer-button {
+.answer-button,
+.help-button {
   width: 50px;
   height: 100%;
   border: none;
@@ -106,6 +107,18 @@
   font-weight: 600;
 }
 
+.help-buttons {
+  margin-top: 15px
+}
+
+.help-button {
+  width: 60px;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #2bff93
+}
+
 @media (max-width: 768px) {
   .main-grid {
     grid-template-columns: 1fr;
@@ -128,5 +141,7 @@
   .main-content {
     border-radius: 0;
     margin: 0;
+    box-shadow: 0 0 0;
+    border-top: 0;
   }
 }
