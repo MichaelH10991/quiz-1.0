@@ -90,6 +90,7 @@ const Main = ({
     const question = randomQuestion(questions);
     setQuestions(questions);
     setQuestion(question);
+    setPrevQuestion(question);
   }, [data, selectedLanguage, selectedCategory]);
 
   const handleInputChange = (event) => {

@@ -51,6 +51,7 @@ function App() {
         showFeedback={showFeedback}
         answerCorrect={answerCorrect}
         prevQuestion={prevQuestion}
+        language={selectedLanguage}
       />
     </div>
   );

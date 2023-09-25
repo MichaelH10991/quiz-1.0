@@ -1,0 +1,11 @@
+.listen-button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.listen-icon {
+  margin-top: 4px;
+  margin-left: 3px;
+  cursor: pointer;
+}
