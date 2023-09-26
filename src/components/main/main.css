@@ -13,6 +13,13 @@
   margin-right: 10%;
   margin-top: 20px;
   height: 200px;
+  position: relative;
+}
+
+.questions-left {
+  position: absolute;
+  right: 7px;
+  top: 5px;
 }
 
 .question {
@@ -46,6 +53,11 @@
   height: 40px;
   display: flex;
   flex: 1;
+}
+
+.answer-bar:hover,
+.answer-bar:focus-within {
+  box-shadow: 0px 0px 7px #535d8b;
 }
 
 .answer-button,
@@ -108,7 +120,7 @@
 }
 
 .help-buttons {
-  margin-top: 15px
+  margin-top: 15px;
 }
 
 .help-button {
@@ -116,7 +128,7 @@
   padding: 5px;
   margin-right: 10px;
   border-radius: 5px;
-  border: 1px solid #2bff93
+  border: 1px solid #2bff93;
 }
 
 @media (max-width: 768px) {

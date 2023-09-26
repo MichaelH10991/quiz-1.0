@@ -21,12 +21,12 @@ const QuestionText = ({
       // could make the peeked text green and the oher text light grey
       return question.local;
     }
-    return `What is ${question.foreign} in English`;
+    return `What is "${question.foreign}" in English`;
   }
   if (options.peek.enabled) {
     return question.foreign;
   }
-  return `What is ${question.local} in ${selectedLanguage}`;
+  return `What is "${question.local}" in ${selectedLanguage}`;
 };
 
 export default QuestionText;

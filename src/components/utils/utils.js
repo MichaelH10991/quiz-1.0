@@ -34,10 +34,15 @@ const randomQuestion = (questions) => {
   return undefined;
 };
 
+const questionsLeft = (questions) => {
+  return questions && questions.filter((question) => !question.done);
+};
+
 export {
   getLanguages,
   getCategories,
   getQuestions,
   getQuestion,
   randomQuestion,
+  questionsLeft,
 };

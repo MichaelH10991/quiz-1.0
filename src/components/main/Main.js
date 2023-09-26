@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./main.css";
 import RightPane from "./rightPane/RightPane";
 import QuestionText from "./QuestionText";
-import { getQuestions, randomQuestion } from "../utils/utils";
+import { getQuestions, randomQuestion, questionsLeft } from "../utils/utils";
 
 const isAnswerCorrect = (answer, question, options) => {
   if (options.flip.enabled) {
@@ -56,19 +56,6 @@ const markQuestion = (answerCorrect, question, questions) => {
   }
 };
 
-const getNewQuestion = (
-  answerCorrect,
-  questions,
-  question,
-  setQuestion,
-  options
-) => {
-  if (answerCorrect) {
-    return randomQuestion(questions);
-  }
-  return question;
-};
-
 const Main = ({
   options,
   setOptions,
@@ -80,7 +67,7 @@ const Main = ({
   setPrevQuestion,
 }) => {
   const [answer, setAnswer] = useState("");
-  const [questions, setQuestions] = useState({});
+  const [questions, setQuestions] = useState([]);
   const [question, setQuestion] = useState({});
 
   useEffect(() => {
@@ -88,8 +75,7 @@ const Main = ({
     const question = randomQuestion(questions);
     setQuestions(questions);
     setQuestion(question);
-    setPrevQuestion(question);
-  }, [data, selectedLanguage, selectedCategory, setPrevQuestion]);
+  }, [data, selectedLanguage, selectedCategory]);
 
   const handleInputChange = (event) => {
     setAnswer(event.target.value);
@@ -103,16 +89,23 @@ const Main = ({
       setShowFeedback(true);
       // mark the questions, only in challenge mode, this is for user feedback
       if (options.challenge.enabled) {
-        setQuestions((prevQuestions) =>
-          markQuestion(answerCorrect, question, prevQuestions)
+        const questionsMarkedAsDone = markQuestion(
+          answerCorrect,
+          question,
+          questions
         );
-        // markQuestion(answerCorrect, question, setQuestions);
+        setQuestions(questionsMarkedAsDone);
+        if (answerCorrect) {
+          setQuestion(randomQuestion(questionsLeft(questionsMarkedAsDone)));
+        }
+      } else {
+        // get a new question
+        if (answerCorrect) {
+          const newQuestion = randomQuestion(questions);
+          setPrevQuestion(question);
+          setQuestion(newQuestion);
+        }
       }
-      console.log(questions);
-      // get a new question
-      const newQuestion = getNewQuestion(answerCorrect, questions, question);
-
-      setQuestion(newQuestion);
       event.target.value = "";
       setAnswer("");
     }
@@ -132,6 +125,9 @@ const Main = ({
   return (
     <div class="main-grid">
       <div class="main-content">
+        <div class="questions-left">
+          {questionsLeft(questions).length} questions left
+        </div>
         <div class="question">
           <QuestionText
             question={question}
