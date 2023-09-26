@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./main.css";
 import RightPane from "./rightPane/RightPane";
 import QuestionText from "./QuestionText";
+import Revise from "../revise/Revise";
+
 import { getQuestions, randomQuestion, questionsLeft } from "../utils/utils";
 
 const isAnswerCorrect = (answer, question, options) => {
@@ -123,49 +125,56 @@ const Main = ({
     });
 
   return (
-    <div class="main-grid">
-      <div class="main-content">
-        <div class="questions-left">
-          {questionsLeft(questions).length} questions left
-        </div>
-        <div class="question">
-          <QuestionText
-            question={question}
-            selectedLanguage={selectedLanguage}
-            selectedCategory={selectedCategory}
-            options={options}
-          />
-        </div>
-        <div class="answer-container">
-          <div class="answer-bar">
-            <input
-              type="text"
-              class="answer-input-1"
-              autoComplete="off"
-              autoCorrect="off"
-              autoCapitalize="off"
-              placeholder="Give it a go!"
-              onInput={handleInputChange}
-              onKeyDown={handleSubmit}
-            ></input>
-            <button class="answer-button">GO</button>
+    <>
+      <div class="main-grid">
+        <div class="main-content">
+          <div class="questions-left">
+            {questionsLeft(questions).length} questions left
           </div>
-          <div class="help-buttons">
-            <button
-              class="help-button"
-              onMouseDown={handleOptionSelected("peek")}
-              onMouseUp={handleOptionSelected("peek")}
-              onTouchStart={handleOptionSelected("peek")}
-              onTouchEnd={handleOptionSelected("peek")}
-            >
-              Peek
-            </button>
-            <button class="help-button">Skip</button>
+          <div class="question">
+            <QuestionText
+              question={question}
+              selectedLanguage={selectedLanguage}
+              selectedCategory={selectedCategory}
+              options={options}
+            />
+          </div>
+          <div class="answer-container">
+            <div class="answer-bar">
+              <input
+                type="text"
+                class="answer-input-1"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                placeholder="Give it a go!"
+                onInput={handleInputChange}
+                onKeyDown={handleSubmit}
+              ></input>
+              <button class="answer-button">GO</button>
+            </div>
+            <div class="help-buttons">
+              <button
+                class="help-button"
+                onMouseDown={handleOptionSelected("peek")}
+                onMouseUp={handleOptionSelected("peek")}
+                onTouchStart={handleOptionSelected("peek")}
+                onTouchEnd={handleOptionSelected("peek")}
+              >
+                Peek
+              </button>
+              <button class="help-button">Skip</button>
+            </div>
           </div>
         </div>
+        <RightPane options={options} setOptions={setOptions} />
       </div>
-      <RightPane options={options} setOptions={setOptions} />
-    </div>
+      <Revise
+        questions={questions}
+        language={selectedLanguage}
+        options={options}
+      />
+    </>
   );
 };
 

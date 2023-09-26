@@ -23,7 +23,6 @@ const Header = ({ options, setOptions }) => {
         })}
       </div>
       <div class="header-right">
-        {/* <div>dasdsa</div> */}
         <button
           class="options-button"
           onClick={() => setOptionsOpen(!optionsOpen)}
