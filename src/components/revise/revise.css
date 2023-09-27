@@ -23,3 +23,10 @@
 .revision-container {
   margin-bottom: 10px;
 }
+
+@media (max-width: 635px) {
+  .revision-container {
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+}

@@ -3,3 +3,7 @@
   font-weight: 700;
   margin-top: 10px;
 }
+
+.options-dialog{
+  z-index: 100
+}

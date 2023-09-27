@@ -27,29 +27,27 @@ const Revise = ({ questions, language, options }) => {
   }
 
   return (
-    <div class="main-grid">
-      <div class="main-content">
-        <p class="revise-header">Revise</p>
-        {language && (
-          <div class="revision-container">
-            <div class="revision-item-header">English</div>
-            <div class="revision-item-header">{language}</div>
-          </div>
-        )}
-        {questions &&
-          Array.isArray(questions) &&
-          questions.map((question) => {
-            return (
-              <div class="revision-container">
-                <div class="revision-item">{question.local}</div>
-                <div style={setStyle(question)} class="revision-item">
-                  {question.foreignDisplay || question.foreign}
-                </div>
+    <>
+      <p class="revise-header">Revise</p>
+      {language && (
+        <div class="revision-container">
+          <div class="revision-item-header">English</div>
+          <div class="revision-item-header">{language}</div>
+        </div>
+      )}
+      {questions &&
+        Array.isArray(questions) &&
+        questions.map((question) => {
+          return (
+            <div class="revision-container">
+              <div class="revision-item">{question.local}</div>
+              <div style={setStyle(question)} class="revision-item">
+                {question.foreignDisplay || question.foreign}
               </div>
-            );
-          })}
-      </div>
-    </div>
+            </div>
+          );
+        })}
+    </>
   );
 };
 
