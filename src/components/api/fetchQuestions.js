@@ -14,16 +14,26 @@ const data = {
         foreignDisplay: "",
         __v: 0,
       },
+      {
+        _id: "64fb63de00168104841782b9",
+        id: "3f2e80cc-e98c-5c2f-bd17-aca5194207c9",
+        language: "Croatian",
+        group: "Numbers",
+        local: "Two",
+        foreign: "Dva",
+        foreignDisplay: "",
+        __v: 0,
+      },
     ],
   },
 };
 
 const fetchQuestions = async () => {
   // return await axios("http://localhost:8080/read");
-  return await axios(
-    "https://ck2hqui3j6.execute-api.eu-west-1.amazonaws.com/prod/read"
-  );
-  // return await { data };
+  // return await axios(
+  //   "https://ck2hqui3j6.execute-api.eu-west-1.amazonaws.com/prod/read"
+  // );
+  return await { data };
 };
 
 export default fetchQuestions;
