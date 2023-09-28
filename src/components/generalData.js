@@ -1,5 +1,6 @@
 const generalData = {
-  appName: "L",
+  appName: "Laz",
+  gameModes: ["Language", "Countries", "Cities"],
   options: {
     challenge: {
       name: "Challenge mode",

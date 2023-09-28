@@ -4,60 +4,15 @@ import RightPane from "./rightPane/RightPane";
 import QuestionText from "./QuestionText";
 import Revise from "../revise/Revise";
 import ManagementTable from "../management/ManagementTable";
+import Answer from "./Answer";
 
-import { getQuestions, randomQuestion, questionsLeft } from "../utils/utils";
-
-const isAnswerCorrect = (answer, question, options) => {
-  if (options.flip.enabled) {
-    if (answer.toLowerCase().trim() === question.local.toLowerCase().trim()) {
-      console.log("Correct!");
-      return true;
-    }
-    console.log("incorrect");
-    return false;
-  }
-
-  if (answer.toLowerCase().trim() === question.foreign.toLowerCase().trim()) {
-    console.log("Correct!");
-    return true;
-  }
-  console.log("incorrect");
-  return false;
-};
-
-/**
- * Marks the question answered, done does not necesessarily mean it was answered correctly
- * maybe move the hook back in here? I dont know :(
- * @param {*} answerCorrect
- * @param {*} question
- * @param {*} questions
- * @returns
- */
-const markQuestion = (answerCorrect, question, questions) => {
-  if (answerCorrect === true) {
-    // if correct, it is simply marked as done
-    return questions.map((prevQuestion) => {
-      if (prevQuestion.id === question.id) {
-        return {
-          ...prevQuestion,
-          done: true,
-        };
-      }
-      return prevQuestion;
-    });
-  } else {
-    // set as incorrectly answered
-    return questions.map((prevQuestion) => {
-      if (prevQuestion.id === question.id) {
-        return {
-          ...prevQuestion,
-          incorrect: true,
-        };
-      }
-      return prevQuestion;
-    });
-  }
-};
+import {
+  getQuestions,
+  randomQuestion,
+  questionsLeft,
+  isAnswerCorrect,
+  markQuestion,
+} from "../utils/utils";
 
 const Main = ({
   options,
@@ -114,6 +69,11 @@ const Main = ({
     }
   };
 
+  /**
+   * Updates state when one of the buttons has been clicked.
+   * @param {*} optionKey the key of the option
+   * @returns
+   */
   const handleOptionSelected = (optionKey) => () =>
     setOptions((prevOptions) => {
       return {
@@ -141,47 +101,41 @@ const Main = ({
                 options={options}
               />
             </div>
-            <div class="answer-container">
-              <div class="answer-bar">
-                <input
-                  type="text"
-                  class="answer-input-1"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  autoCapitalize="off"
-                  placeholder="Give it a go!"
-                  onInput={handleInputChange}
-                  onKeyDown={handleSubmit}
-                ></input>
-                <button class="answer-button">GO</button>
-              </div>
-              <div class="help-buttons">
-                <button
-                  class="help-button"
-                  onMouseDown={handleOptionSelected("peek")}
-                  onMouseUp={handleOptionSelected("peek")}
-                  onTouchStart={handleOptionSelected("peek")}
-                  onTouchEnd={handleOptionSelected("peek")}
-                >
-                  Peek
-                </button>
-                <button class="help-button">Skip</button>
-              </div>
+            <Answer
+              handleInputChange={handleInputChange}
+              handleSubmit={handleSubmit}
+            />
+
+            <div class="help-buttons">
+              <button
+                class="help-button"
+                onMouseDown={handleOptionSelected("peek")}
+                onMouseUp={handleOptionSelected("peek")}
+                onTouchStart={handleOptionSelected("peek")}
+                onTouchEnd={handleOptionSelected("peek")}
+              >
+                Peek
+              </button>
+              <button class="help-button">Skip</button>
             </div>
           </div>
-          <div class="content-box">
-            <Revise
-              questions={questions}
-              language={selectedLanguage}
-              options={options}
-            />
-          </div>
-          <div class="content-box">
-            <ManagementTable
-              questions={questions}
-              showTable={options.management.enabled}
-            />
-          </div>
+          {options.revise.enabled && (
+            <div class="content-box">
+              <Revise
+                questions={questions}
+                language={selectedLanguage}
+                options={options}
+              />
+            </div>
+          )}
+          {options.management.enabled && (
+            <div class="content-box">
+              <ManagementTable
+                questions={questions}
+                showTable={options.management.enabled}
+              />
+            </div>
+          )}
         </div>
         <RightPane options={options} setOptions={setOptions} />
       </div>

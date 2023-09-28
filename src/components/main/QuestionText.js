@@ -5,11 +5,11 @@ const QuestionText = ({
   options,
 }) => {
   if (!selectedLanguage) {
-    return "Please select a language.";
+    return "Select a language to get started...";
   }
 
   if (!selectedCategory) {
-    return "Please select a category.";
+    return "Now select a category...";
   }
 
   if (!question) {
