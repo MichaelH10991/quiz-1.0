@@ -14,12 +14,30 @@ import {
   GridRowEditStopReasons,
 } from "@mui/x-data-grid";
 import { randomId } from "@mui/x-data-grid-generator";
+import Select from "./Select";
 
-// import { create, deleteOne } from "../../api/quizApi";
-// import fetchQuestions from "../api/fetchQuestions";
+import createQuestion from "../api/createQuestion";
+import deleteQuestion from "../api/deleteQuestion";
+
+import { getLanguages, getCategories } from "../utils/utils";
+
+// const getLanguages = (data) => (data && Object.keys(data)) || [];
+// const getGroups = (data, language) =>
+//   (data && language && data[language] && Object.keys(data[language])) || [];
+
+// const getQuestions = (data, language, group) =>
+//   (data && language && group && data[language][group]) || [];
 
 function EditToolbar(props) {
-  const { setRows, setRowModesModel } = props;
+  const {
+    setRows,
+    setRowModesModel,
+    data,
+    selectedLanguage,
+    selectedGroup,
+    setSelectedLanguage,
+    setSelectedGroup,
+  } = props;
 
   const handleClick = () => {
     const id = randomId();
@@ -27,8 +45,8 @@ function EditToolbar(props) {
       ...oldRows,
       {
         id,
-        language: "",
-        group: "",
+        language: selectedLanguage || "",
+        group: selectedGroup || "",
         local: "",
         foreign: "",
         foreignDisplay: "",
@@ -46,23 +64,36 @@ function EditToolbar(props) {
       <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
         Add record
       </Button>
+      <Select
+        title="Language"
+        items={getLanguages(data)}
+        setValue={setSelectedLanguage}
+      />
+      <Select
+        title="Category"
+        items={getCategories(data, selectedLanguage)}
+        setValue={setSelectedGroup}
+      />
     </GridToolbarContainer>
   );
 }
 
 export default function FullFeaturedCrudGrid(props) {
-  const { questions, setQuestions, showTable, languages } = props;
+  const { showTable, data } = props;
   const [rows, setRows] = React.useState([]);
   const [rowModesModel, setRowModesModel] = React.useState({});
+  const [selectedLanguage, setSelectedLanguage] = React.useState();
+  const [selectedGroup, setSelectedGroup] = React.useState();
 
   React.useEffect(() => {
-    const q =
-      questions &&
-      questions.map((question, index) => {
-        return question;
-      });
-    setRows(q || []);
-  }, [questions]);
+    setRows(
+      (selectedLanguage &&
+        selectedGroup &&
+        data[selectedLanguage] &&
+        data[selectedLanguage][selectedGroup]) ||
+        []
+    );
+  }, [data, selectedGroup, selectedLanguage]);
 
   if (!showTable) {
     return undefined;
@@ -85,7 +116,7 @@ export default function FullFeaturedCrudGrid(props) {
   const handleDeleteClick = (id) => async () => {
     try {
       setRows(rows.filter((row) => row.id !== id));
-      // await deleteOne(id);
+      await deleteQuestion(id);
     } catch (error) {
       console.log(error.message);
     }
@@ -113,7 +144,7 @@ export default function FullFeaturedCrudGrid(props) {
     // });
 
     try {
-      // await create(newRow);
+      await createQuestion(newRow);
     } catch (error) {
       console.log("error posting", error);
     }
@@ -126,16 +157,6 @@ export default function FullFeaturedCrudGrid(props) {
   };
 
   const columns = [
-    { field: "language", headerName: "Language", width: 180, editable: true },
-    { field: "group", headerName: "Group", width: 180, editable: true },
-    { field: "local", headerName: "Local", width: 180, editable: true },
-    { field: "foreign", headerName: "Foreign", width: 180, editable: true },
-    {
-      field: "foreignDisplay",
-      headerName: "Display",
-      width: 180,
-      editable: true,
-    },
     {
       field: "actions",
       type: "actions",
@@ -182,6 +203,16 @@ export default function FullFeaturedCrudGrid(props) {
         ];
       },
     },
+    { field: "language", headerName: "Language", width: 180, editable: true },
+    { field: "group", headerName: "Group", width: 180, editable: true },
+    { field: "local", headerName: "Local", width: 180, editable: true },
+    { field: "foreign", headerName: "Foreign", width: 180, editable: true },
+    {
+      field: "foreignDisplay",
+      headerName: "Display",
+      width: 180,
+      editable: true,
+    },
   ];
 
   return (
@@ -211,7 +242,15 @@ export default function FullFeaturedCrudGrid(props) {
           toolbar: EditToolbar,
         }}
         slotProps={{
-          toolbar: { setRows, setRowModesModel },
+          toolbar: {
+            setRows,
+            setRowModesModel,
+            data,
+            selectedLanguage,
+            selectedGroup,
+            setSelectedLanguage,
+            setSelectedGroup,
+          },
         }}
       />
     </Box>

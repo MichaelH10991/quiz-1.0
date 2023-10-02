@@ -18,11 +18,11 @@ function App() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [answerCorrect, setAnswerCorrect] = useState(false);
   const [prevQuestion, setPrevQuestion] = useState({});
+  const [error, setError] = useState(undefined);
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await fetchQuestions();
-      console.log(response);
+      const response = await fetchQuestions(setError);
       setData(response.data);
     };
     fetch();
@@ -45,6 +45,7 @@ function App() {
         setShowFeedback={setShowFeedback}
         setAnswerCorrect={setAnswerCorrect}
         setPrevQuestion={setPrevQuestion}
+        error={error}
       />
       <Feedback
         setShowFeedback={setShowFeedback}

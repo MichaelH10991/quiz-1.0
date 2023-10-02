@@ -3,7 +3,19 @@ const QuestionText = ({
   selectedLanguage,
   selectedCategory,
   options,
+  error,
 }) => {
+  if (error) {
+    return (
+      <div class="error-header">
+        <p>Uh oh :(</p>
+        <p>There was an error loading the questions.</p>
+        <p>Error: {error}</p>
+        <p>Please try again later.</p>
+      </div>
+    );
+  }
+
   if (!selectedLanguage) {
     return "Select a language to get started...";
   }
@@ -19,12 +31,24 @@ const QuestionText = ({
   if (options.flip.enabled) {
     if (options.peek.enabled) {
       // could make the peeked text green and the oher text light grey
-      return question.local;
+      return (
+        <>
+          <span style={{ color: "#4e5267" }}>What is "</span>
+          <span style={{ color: "#2efe93" }}>{question.local}</span>
+          <span style={{ color: "#4e5267" }}>" in English</span>
+        </>
+      );
     }
     return `What is "${question.foreign}" in English`;
   }
   if (options.peek.enabled) {
-    return question.foreign;
+    return (
+      <>
+        <span style={{ color: "#4e5267" }}>What is "</span>
+        <span style={{ color: "#2efe93" }}>{question.foreign}</span>
+        <span style={{ color: "#4e5267" }}>" in {selectedLanguage}</span>
+      </>
+    );
   }
   return `What is "${question.local}" in ${selectedLanguage}`;
 };

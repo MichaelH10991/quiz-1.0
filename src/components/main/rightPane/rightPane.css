@@ -1,6 +1,8 @@
 .right-pane {
   width: 300px;
+  border-left: 2px solid #2bff93;
   border-top: 2px solid #2bff93;
+  box-shadow: -6px 13px 10px #323859;;
   background-color: #272c44;
   position: absolute;
   top: 70px;

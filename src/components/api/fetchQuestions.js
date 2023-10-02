@@ -1,5 +1,5 @@
-import axios from "axios";
 import config from "./config";
+import makeRequest from "./makeRequest";
 
 const data = {
   Croatian: {
@@ -28,12 +28,14 @@ const data = {
   },
 };
 
-const fetchQuestions = async () => {
-  // return await axios("http://localhost:8080/read");
-  return await axios(
-    "https://ck2hqui3j6.execute-api.eu-west-1.amazonaws.com/prod/read"
+const fetchQuestions = async (setError) => {
+  return await makeRequest(
+    {
+      method: "get",
+      url: `${config.apiBaseUrl}/read`,
+    },
+    setError
   );
-  // return await { data };
 };
 
 export default fetchQuestions;

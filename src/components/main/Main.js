@@ -23,6 +23,7 @@ const Main = ({
   setShowFeedback,
   setAnswerCorrect,
   setPrevQuestion,
+  error,
 }) => {
   const [answer, setAnswer] = useState("");
   const [questions, setQuestions] = useState([]);
@@ -99,6 +100,7 @@ const Main = ({
                 selectedLanguage={selectedLanguage}
                 selectedCategory={selectedCategory}
                 options={options}
+                error={error}
               />
             </div>
             <Answer
@@ -131,7 +133,7 @@ const Main = ({
           {options.management.enabled && (
             <div class="content-box">
               <ManagementTable
-                questions={questions}
+                data={data}
                 showTable={options.management.enabled}
               />
             </div>
