@@ -29,6 +29,7 @@ const data = {
 };
 
 const fetchQuestions = async (setError) => {
+  console.log(config);
   return await makeRequest(
     {
       method: "get",

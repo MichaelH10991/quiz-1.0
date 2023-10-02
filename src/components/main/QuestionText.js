@@ -7,7 +7,7 @@ const QuestionText = ({
 }) => {
   if (error) {
     return (
-      <div class="error-header">
+      <div class="error">
         <p>Uh oh :(</p>
         <p>There was an error loading the questions.</p>
         <p>Error: {error}</p>

@@ -14,7 +14,7 @@ const Header = ({ options, setOptions }) => {
     <header className="header">
       <div class="header-left">
         <div class="logo">
-          <p>{generalData.appName}</p>
+          <p class="logo-text">{generalData.appName}</p>
         </div>
         <button class="games-button">Games</button>
         {generalData.gameModes.map((gameMode) => {
