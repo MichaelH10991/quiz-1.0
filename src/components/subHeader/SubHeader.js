@@ -21,25 +21,28 @@ const SubHeader = ({ setSelectedLanguage, setSelectedCategory, data }) => {
   };
 
   return (
-    <div class="subheader-container">
-      <div class="subheader">
-        <div class="selectors">
-          <select onChange={handleLanguageChange} class="selector">
-            <option value="">Language</option>
-            {languages.map((language) => (
-              <option value={language}>{language}</option>
-            ))}
-          </select>
-          <select onChange={handleCategoryChange} class="selector">
-            <option value="">Category</option>
-            {language &&
-              categories(language).map((language) => (
+    <>
+      <div class="seperator"></div>
+      <div class="subheader-container">
+        <div class="subheader">
+          <div class="selectors">
+            <select onChange={handleLanguageChange} class="selector">
+              <option value="">Language</option>
+              {languages.map((language) => (
                 <option value={language}>{language}</option>
               ))}
-          </select>
+            </select>
+            <select onChange={handleCategoryChange} class="selector">
+              <option value="">Category</option>
+              {language &&
+                categories(language).map((language) => (
+                  <option value={language}>{language}</option>
+                ))}
+            </select>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

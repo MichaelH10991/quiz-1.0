@@ -56,6 +56,7 @@ const Main = ({
         setQuestions(questionsMarkedAsDone);
         if (answerCorrect) {
           setQuestion(randomQuestion(questionsLeft(questionsMarkedAsDone)));
+          setPrevQuestion(question);
         }
       } else {
         // get a new question

@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react";
 import "./listenButton.css";
 import speakerIcon from "../../icons/volume_up_FILL0_wght400_GRAD0_opsz24.svg";
 
+/**
+ * TODO: A lot of this can be abstracted out into config, when I have the time...
+ */
 const languageMap = {
   croatian: "hr",
   german: "de",

@@ -26,6 +26,9 @@
   width: 85px;
 }
 
+.seperator {
+}
+
 @media (max-width: 768px) {
   .subheader-container {
     grid-template-columns: 1fr;

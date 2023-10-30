@@ -45,7 +45,7 @@ const QuestionText = ({
     return (
       <>
         <span style={{ color: "#4e5267" }}>What is "</span>
-        <span style={{ color: "#2efe93" }}>{question.foreign}</span>
+        <span style={{ color: "#2efe93" }}>{question.foreignDisplay}</span>
         <span style={{ color: "#4e5267" }}>" in {selectedLanguage}</span>
       </>
     );
