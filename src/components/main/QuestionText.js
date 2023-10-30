@@ -1,3 +1,17 @@
+const LIGHTER = "#4e5267";
+const GREEN = "#2efe93";
+
+const ErrorFeedback = ({ error }) => {
+  return (
+    <div class="error">
+      <p>Uh oh :(</p>
+      <p>There was an error loading the questions.</p>
+      <p>Error: {error}</p>
+      <p>Please try again later.</p>
+    </div>
+  );
+};
+
 const QuestionText = ({
   question,
   selectedLanguage,
@@ -6,14 +20,7 @@ const QuestionText = ({
   error,
 }) => {
   if (error) {
-    return (
-      <div class="error">
-        <p>Uh oh :(</p>
-        <p>There was an error loading the questions.</p>
-        <p>Error: {error}</p>
-        <p>Please try again later.</p>
-      </div>
-    );
+    return <ErrorFeedback error={error} />;
   }
 
   if (!selectedLanguage) {
@@ -33,20 +40,24 @@ const QuestionText = ({
       // could make the peeked text green and the oher text light grey
       return (
         <>
-          <span style={{ color: "#4e5267" }}>What is "</span>
-          <span style={{ color: "#2efe93" }}>{question.local}</span>
-          <span style={{ color: "#4e5267" }}>" in English</span>
+          <span style={{ color: LIGHTER }}>What is "</span>
+          <span style={{ color: GREEN }}>{question.local}</span>
+          <span style={{ color: LIGHTER }}>" in English</span>
         </>
       );
     }
-    return `What is "${question.foreign}" in English`;
+    return `What is "${
+      question.foreignDisplay || question.foreign
+    }" in English`;
   }
   if (options.peek.enabled) {
     return (
       <>
-        <span style={{ color: "#4e5267" }}>What is "</span>
-        <span style={{ color: "#2efe93" }}>{question.foreignDisplay}</span>
-        <span style={{ color: "#4e5267" }}>" in {selectedLanguage}</span>
+        <span style={{ color: LIGHTER }}>What is "</span>
+        <span style={{ color: GREEN }}>
+          {question.foreignDisplay || question.foreign}
+        </span>
+        <span style={{ color: LIGHTER }}>" in {selectedLanguage}</span>
       </>
     );
   }

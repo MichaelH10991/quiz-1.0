@@ -26,7 +26,10 @@ const Feedback = ({
       <button class="exit-button" onClick={() => setShowFeedback(false)}>
         close
       </button>
-      <ListenButton language={language} phrase={prevQuestion.foreign} />
+      <ListenButton
+        language={language}
+        phrase={prevQuestion.foreignDisplay || prevQuestion.foreign}
+      />
     </div>
   ) : (
     <div class="feedback-container feedback-incorrect">
